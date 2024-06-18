@@ -1,0 +1,33 @@
+Double constants are of type double:
+\begin{center}
+    $\dfrac{}{\vdash \text{any double constant: double}}$
+\end{center}
+
+Adding two doubles:
+\begin{center}
+    $\dfrac{\vdash e_1: \text{double}, \vdash e_2: \text{double} }{\vdash e_1 + e_2: \text{double}}$
+\end{center}
+
+Adding a double and an integer gives a double:
+\begin{center}
+    $\dfrac{\vdash e_1: \text{double}, \vdash e_2: \text{int} }{\vdash e_1 + e_2: \text{double}}$
+\end{center}
+\begin{center}
+    $\dfrac{\vdash e_1: \text{int}, \vdash e_2: \text{double}}{\vdash e_1 + e_2: \text{double}}$
+\end{center}
+
+As you can see, allowing type conversions from int to double means that we have to repeat rules. \\
+To reduce the number of rules, we can define that
+
+\begin{center}
+    int $\le$ double
+\end{center}
+
+In this example, we then only need two rules for the add operator:
+
+\begin{center}
+    $\dfrac{\vdash e_1: \text{double}, \vdash e_2: \text{T} \le \text{double}}{\vdash e_1 + e_2: \text{double}}$ \\
+\end{center}
+\begin{center}    
+    $\dfrac{\vdash e_1: \text{int}, \vdash e_2: \text{double}}{\vdash e_1 + e_2: \text{double}}$
+\end{center}

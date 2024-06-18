@@ -1,0 +1,32 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\begin{document}
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node {S}
+    child {node {S}
+      child {node {a}}
+      child {node {$\cdot$}}
+      child {node {S}
+        child {node {(}}
+        child {node {S}
+            child {node {S}
+                child {node {-}}    
+                child {node {S}
+                    child {node {a}}}
+            }
+            child {node {+}}
+            child {node {S}
+                child {node {(}}   
+                child {node {S}
+                    child {node {a}}}   
+                child {node {)}}   
+            }
+        }
+        child {node {)}}
+      }
+    };
+\end{tikzpicture}
+\end{document}

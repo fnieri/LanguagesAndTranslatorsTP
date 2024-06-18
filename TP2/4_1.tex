@@ -1,0 +1,17 @@
+\noindent A grammar is LL(1) if and only if, for all rules 
+\begin{center}
+    $A \rightarrow \beta | \gamma $ 
+    
+    $la(A \rightarrow \beta) \cap la(A \rightarrow \gamma) = \varnothing$
+\end{center}
+with $(\beta \ne \gamma)$  \\
+
+\noindent It is not LL(1) as:
+\begin{center}
+    $first_{1}(S \rightarrow ab) = first_{1}(S \rightarrow ac) = \{a\}$
+\end{center}
+
+\noindent It is LL(2) as:
+\begin{center}
+    $first_{2}(S \rightarrow ab) = \{ab\} \ne first_{2}(S \rightarrow ac) = \{ac\}$
+\end{center}

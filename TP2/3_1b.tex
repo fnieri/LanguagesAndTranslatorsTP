@@ -1,0 +1,16 @@
+\noindent $(a + (b \cdot), S, \varepsilon)$ \\
+$(a + (b \cdot), R, 1)$ Rule 1 to expand S \\
+$(a + (b \cdot), R+R, 12)$ Rule 2 to expand S \\
+$(a + (b \cdot), T+R, 125)$ Rule 5 to expand R \\
+$(a + (b \cdot), a+R, 1257)$ Rule 7 to expand T \\
+$( + (b \cdot), +R, 1257)$ Match a\\
+$( (b \cdot), R, 1257)$ Match +\\
+$( (b \cdot), T, 1257)$ Rule 5 to expand R\\
+$( (b \cdot), (R), 125756)$ Rule 6 to expand T\\
+$( b \cdot), R), 125756)$ Match (\\
+$( b \cdot), R \cdot), 1257564)$ Rule 4 to expand R\\
+$( b \cdot), T \cdot), 1257645)$ Rule 5 to expand R\\
+$( b \cdot), b \cdot), 125767458)$ Rule 8 to expand R\\
+$( \cdot), \cdot), 125767458)$ Match b\\
+$( ), ), 125767458)$ Match $\cdot$\\
+$( \varepsilon, \varepsilon, 125767458)$ Match )\\

@@ -1,0 +1,91 @@
+\subsection{Question 1}
+    \textbf{Consider the CFG G with the rules:}
+    \begin{center}
+        $S \rightarrow a \ | \ (S) \ | \ S \cdot S \ | \ S + S \ | \ -S $
+    \end{center}
+    \subsubsection{Question 1.1}
+        \textbf{Give the set of terminal symbols used in the rules of G} \\
+
+        \begin{center}
+            $\Sigma = \{a, (, ), -, \cdot, +\}$
+        \end{center}
+    \subsubsection{Question 1.2}
+        \textbf{Give a leftmost analysis of the input $a \cdot (-a + (a))$ and draw the syntax tree.} \\
+
+        \input{TP2/1_2b}
+
+        \addimg{img/TP2/1_2a.pdf}{}{Syntax tree for $a \cdot (-a + (a))$}{}
+    \subsubsection{Question 1.3}
+        \textbf{Give a rightmost analysis of the input $a \cdot (-a + (a))$}
+
+        \input{TP2/1_3}
+
+    \subsubsection{Question 1.4}
+        \textbf{Show that G is ambiguous.}
+
+        \input{TP2/1_4}
+
+\subsection{Question 2}
+    \textbf{Extend the CFG for arithmetic expressions from the slides}
+
+    \input{TP2/q2}
+
+    \textbf{by:}
+
+    \subsubsection{Question 2.1}
+        \textbf{adding the binary minus operator and the division operator}
+
+        \input{TP2/2_1}
+
+    \subsubsection{Question 2.2}
+        \textbf{Write the syntax tree for 3 + 4/5. Then manually turn it into a more readable AST.}
+            
+            \begin{figure}[H]%
+                \centering
+                \subfloat[\centering]{{\includegraphics[width=5cm]{img/TP2/2_2a.pdf} }}%
+                \qquad
+                \subfloat[\centering ]{{\includegraphics[width=5cm]{img/TP2/2_2b.pdf} }}%
+                \caption{AST for 3 + 4/5 and readable AST}
+                \label{fig:example}%
+            \end{figure}
+
+    \subsubsection{Question2.3}
+        \textbf{You will notice that the AST in question 2 does not only reflect the syntactic structure of the
+    input but also the precedence of the / operator over the + operator. Add a new operator $<$ to
+    the grammar that has lower precedence than the + operator and the / operator and test the
+    new grammar on the input $4+7 < 3 + 4/5.$}
+    
+    \input{TP2/2_3a}
+
+    \addimg{img/TP2/2_3b.pdf}{}{}{}
+
+\subsection{Question 3}
+    \textbf{Here is a CFG for regular expressions over the alphabet {a, b}. That means the CFG describes how regular expressions look like.}
+
+    \input{TP2/3_1a}
+
+    \textbf{Note that we are using the plus-symbol “+” (e.g., “a+b”) to represent the choice in regular expression $(a|b)$ to avoid confusion with the $|$ used by the CFG itself. Run the NTA of this grammar for the input $a + (b \cdot)$}
+
+    \input{TP2/3_1b}
+
+\subsection{Question 4}
+    \textbf{Consider the CFG G with the two rules}
+    \begin{center}
+        $S \rightarrow \ ab \ | \ ac$
+    \end{center}
+    \textbf{over the terminal symbols $\{a, b, c\}.$}
+
+    \subsubsection{Question 4.1}
+        \textbf{Explain why G is not LL(1). Is it LL(2) ?}
+
+        \input{TP2/4_1}
+
+    \subsubsection{Question 4.2}
+        \textbf{Write a CFG that is LL(1) and that generates the same language as G. Hint: the new grammar has two non-terminal symbols.}
+
+        \input{TP2/4_2}
+
+    \subsubsection{Question 4.3}
+        \textbf{Give a CFG similar to G that is not LL(5)}
+        
+        \input{TP2/4_3}

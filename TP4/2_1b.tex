@@ -1,0 +1,22 @@
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+         \hline  & S & A & B & a & b & c & d & e & action  \\
+         \hline $I_0 = \varepsilon$ & $I_1$ & $I_2$ & $I_3$ & $I_6$ &  &  &   &  & shift \\
+         \hline $I_1 = S$  &   &  &  &  &  &  &  &  & accept\\
+         \hline $I_2 = A$ &   &  &  &  &  &  &  &  & reduce 2  \\
+         \hline $I_3 = B$&   &  &  &  &  &  & $I_4$ & $I_5$ & shift \\
+         \hline $I_4 = Bd$  &  &  &  &  &  &  &  &  & reduce 3 \\
+         \hline $I_5 = Be$  &  &  &  &  &  &  &  &  & reduce 5 \\
+         \hline $I_6 = a$ & &  $I_7$ & $I_9$ & $I_6$ &  & $I_{11}$ &  &   & shift \\
+         \hline $I_7 = aA$ &  &  &  &  & $I_8$ &  &  &  & shift \\
+         \hline $I_8 = aAb$ &    &  &  &  &  &  &  &  & reduce 4 \\
+         \hline $I_9 = aB$&  &   &  &  &  & $I_{10}$ &  & $I_5$ & shift\\
+         \hline $I_{10} = aBc$&  &  &  &  &  &  &  &  & reduce 6 \\
+         \hline $I_{11} = ac$&   &  &  &  &  &  &  &  & reduce 7 \\
+         \hline $I_{12} = \emptyset$ &   &  &  &  &  &  &  &  & error \\
+         \hline
+    \end{tabular}
+    \caption{Parsing table for G}
+    \label{tab:my_label}
+\end{table}

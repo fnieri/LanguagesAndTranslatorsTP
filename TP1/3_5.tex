@@ -1,0 +1,12 @@
+
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\begin{document}
+\begin{tikzpicture}[shorten >=1pt,node distance=3cm,on grid,auto] 
+   \node[state, initial, accepting] (0) {$\{A,B,C\}$}; 
+    \path[->] (0) edge [loop above] node  {0} (0);
+    \path[->] (0) edge [loop below] node  {1} (0);
+\end{tikzpicture}
+\end{document}  
+

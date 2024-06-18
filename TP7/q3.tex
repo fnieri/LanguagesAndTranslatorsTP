@@ -1,0 +1,11 @@
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+int f(int v) {
+    v = v + 2;
+    return v*v;
+}
+int g(int a, int b) {
+    int c = f(a);
+    int d = 2*f(a+b);
+    return c+d;
+}
+\end{lstlisting}

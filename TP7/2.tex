@@ -1,0 +1,21 @@
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+// parameter is v0
+t0 = 0x10004
+t1 = *t0
+ // read value of x
+t2 = t1 * 4
+ // each array element is four bytes
+t3 = 0x10000
+t4 = t0 + t3
+ // address of y[x]
+*t4 = v0
+ // store v in y[x]
+//-----------
+t5 = 0x10004
+t6 = *t5
+t7 = t6 + 1
+*t5 = t7
+ // store x+1 in x
+\end{lstlisting}
+
+Of course, this code can be optimized. Instead of loading again the variable x in t6, we could just re-use t1.

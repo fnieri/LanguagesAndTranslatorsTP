@@ -1,0 +1,9 @@
+\noindent We can add some rules to create shift/reduce or reduce/reduce conflicts
+
+\noindent Shift/reduce = When $\varepsilon$: {[A $\to \cdot$]} in I. \\
+Reduce/reduce = When a: {[A $\to$ a$\cdot$]}, {[B $\to$ C $\cdot$]} in item set
+
+\begin{center}
+    $ A \to aAb \ | \ Be  \ | \ \varepsilon $ \\
+    LR(0)(aA) = \{{[(A $\to$ aA$\cdot$b, {[A $\to$ aA$\cdot$]}]}
+\end{center}

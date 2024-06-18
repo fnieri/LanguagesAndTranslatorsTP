@@ -1,0 +1,35 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\begin{document}
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node {E}
+    child {node {E}
+      child {node {E}
+        child {node {F}
+            child {node {true}}      
+        }
+      }
+        child {node {and}}    
+      child {node {E}
+        child {node {false}}
+      }
+      }
+      child {node {or}}
+      child {node {F}
+        child {node {(E)}
+          child {node {E}
+            child {node {F}
+                child {node {true}}
+            }
+          }
+          child {node {and}}
+          child {node {F}
+            child {node {false}}
+            }
+        }
+       };
+\end{tikzpicture}
+\end{document}

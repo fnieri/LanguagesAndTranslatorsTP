@@ -1,0 +1,75 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+\begin{document}
+\begin{tikzpicture}[shorten >=1pt,node distance=5cm,on grid,auto]
+    % Define the states with their labels
+    \node[draw,initial, align=left] (0)   {
+          {[S' $\to \cdot$S]} 
+          {[S $\to \cdot$A]}\\
+          {[S $\to \cdot$Bd]} 
+          {[A $\to \cdot$aAb]} \\
+          {[A $\to \cdot$Be]} 
+          {[B $\to \cdot$ac]} \\
+          {[B $\to \cdot$aBc]}};
+    \node[draw, align=left] (S) [above right=of 0] {
+        {[S'$\to$ S$\cdot$]}
+    };
+    \node[draw, align=left] (A) [above =of 0] {
+        {[S'$\to$ A$\cdot$]}
+    };
+    \node[draw, align=left] (B) [right=of 0] {
+        {[S $\to$ B$\cdot$ d]} \\
+        {[A $\to$ B$\cdot$ e]} 
+    };
+    \node[draw, align=left] (Bd) [above right=of B] {
+        {[S $\to$ Bd$\cdot$]} 
+    };
+    \node[draw, align=left] (Be) [below right=of B] {
+        {[A $\to$ Be$\cdot$]} 
+    };
+    \node[draw, align=left] (a) [below=of 0] { 
+        {[A $\to$ a$\cdot$Ab]}
+        {[B $\to$ a$\cdot$Bc]} \\
+        {[B $\to$ a$\cdot$c]}
+        {[A $\to$ $\cdot$aAb]} \\
+        {[A $\to$ $\cdot$Be]}
+        {[B $\to$ a$\cdot$Bc]} \\
+        {[B $\to$ $\cdot$ac]}
+    };
+    \node[draw, align=left] (aA) [below left=of a] {
+        {[A $\to$ aA$\cdot$b]}
+    };
+    \node[draw, align=left] (aAb) [below=of aA] {
+        {[A $\to$ aAb$\cdot$]}
+    };
+
+    \node[draw, align=left] (aB) [right=of a] {
+        {[B $\to$ aB$\cdot$c]} \\ {[B $\to$ B$\cdot$e]}
+    };
+    
+    \node[draw, align=left] (aBc) [below =of aB] {
+        {[B $\to$ aBc$\cdot$]}
+    };
+
+    \node[draw, align=left] (ac) [below right=of a] {
+        {[B $\to$ ac$\cdot$]}
+    };
+    % Draw the edges with labels
+    \path[->]
+        (0) edge node {S} (S)
+              edge node {B} (B)
+              edge node {A} (A)
+              edge node {a} (a)
+        (B) edge node {d} (Bd)
+            edge node {e} (Be)
+        (a) edge [loop left] node {a} (a)
+            edge node {c} (ac)
+            edge node {A} (aA)
+            edge node {B} (aB)
+        (aB) edge node {c} (aBc)
+            edge node {e} (Be)
+        (aA) edge node {b} (aAb);
+\end{tikzpicture}
+\end{document}

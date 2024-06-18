@@ -1,0 +1,15 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\begin{document}
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node {+}
+      child {node {3}}
+        child {node {$\div$}
+        child {node {4}}
+        child {node {5}}
+       };
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,28 @@
+\documentclass[12pt]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\begin{document}
+\begin{tikzpicture}[
+    node distance=3cm and 4cm, 
+    node/.style={draw, rectangle, text width=3cm, text centered, minimum height=1cm},
+    arrow/.style={-{Latex[length=3mm]}, thick}
+    ]
+    \node[draw=none] (c_label) {};
+    \node[draw, below=1cm of c_label, draw] (c_start) {};
+    \node[draw, below=of c_start] (c_init_sum) {int sum = 0};
+    \node[draw, below=of c_init_sum] (c_init_i) {int i = 1};
+    \node[draw, below=of c_init_i] (c_cond) {test i $\le$ n};
+    \node[draw, below=of c_cond] (c_body) {sum += i * i};
+    \node[draw, below=of c_body] (c_inc) {i++};
+    \node[draw, below=of c_inc] (c_return) {return sum};
+
+    \draw[arrow] (c_start) -- (c_init_sum);
+    \draw[arrow] (c_init_sum) -- (c_init_i);
+    \draw[arrow] (c_init_i) -- (c_cond);
+    \draw[arrow] (c_cond) -- (c_body) node[midway, left] {true};
+    \draw[arrow] (c_inc.west) -- ++(-1, 0) |- (c_cond.west);
+    \draw[arrow] (c_cond.east) -- ++(1,0) |- (c_return.east) node[midway, right] {false};
+    \draw[arrow] (c_body) -- (c_inc);
+\end{tikzpicture}
+\end{document}

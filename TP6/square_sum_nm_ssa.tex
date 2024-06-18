@@ -1,0 +1,15 @@
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+squareSum(n0):
+    sum0 = 0
+    i0 = 1
+    goto loop(n0, sum0, i0)
+loop(n1, sum1, i1):
+    if i1<=n1 then goto body(n1,sum1,i1) else goto end(n1,sum1,i1)
+body(n2, sum2, i2):
+    t0 = i2*i2
+    sum3 = sum2 + t0
+    i3 = i2 + 1
+    goto loop(n2, sum3, i3)
+end(n3, sum4, i4):
+    return sum4
+\end{lstlisting}

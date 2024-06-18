@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{courier} %% Sets font for listing as Courier.
+\usepackage{listings, xcolor}
+\usepackage{exercise}
+
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{attachfile2}
+\usepackage{vhistory}
+\usepackage{epsfig}
+\usepackage{subfig}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=tikz/]
+
+\renewcommand\ExerciseName{Question~}
+\renewcommand\AnswerName{Answer to question}
+\renewcommand\ExerciseHeader{%
+  \noindent\parbox[t]{.18\textwidth}{%
+    \bfseries\large\ExerciseName\ExerciseHeaderNB\hfill}%
+  \parbox[t]{.72\textwidth}{%
+    \centering\bfseries\large%
+    \ExerciseHeaderTitle\ExerciseHeaderOrigin}%
+  \par\medskip
+}
+
+\newcommand{\addimg}[4]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[#2]{#1}
+    \caption{#3}
+    \label{#4}
+    \end{figure}
+}
+
+\lstset{
+tabsize = 4, %% set tab space width
+showstringspaces = false, %% prevent space marking in strings, string is defined as the text that is generally printed directly to the console
+numbers = left, %% display line numbers on the left
+commentstyle = \color{green}, %% set comment color
+keywordstyle = \color{blue}, %% set keyword color
+stringstyle = \color{red}, %% set string color
+rulecolor = \color{black}, %% set frame color to avoid being affected by text color
+basicstyle = \small \ttfamily , %% set listing font and size
+breaklines = true, %% enable line breaking
+numberstyle = \tiny,
+}
+
+\title{Language And Translators - TP Correction}
+\author{Francesco Nieri}
+\date{June 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{TP1}
+    \input{TPs/tp1}
+\newpage
+\section{TP2}
+    \input{TPs/tp2}
+\newpage
+\section{TP3}
+    \input{TPs/tp3}
+\newpage
+\section{TP4}
+    \input{TPs/tp4}
+\newpage
+\section{TP5}
+    \input{TPs/tp5}
+\newpage
+\section{TP6}
+    \input{TPs/tp6}
+\newpage
+\section{TP7}
+    \input{TPs/tp7}
+\end{document}

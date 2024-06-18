@@ -1,0 +1,22 @@
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+// parameters are a0 and b0
+v0 = a0
+ // calling function f with argument a
+v1 = v0 + 2
+t0 = v1 * v1
+c0 = t0
+ // c = f(a)
+//-----------
+v2 = a0 + b0
+ // calling function f with argument a+b
+v3 = v2 + 2
+t1 = v3 * v3
+d0 = 2 * t1
+ // d = 2*f(a+b)
+//-----------
+t2 = c0 + d0
+return t2
+\end{lstlisting}
+
+Why do compilers only inline small functions? Code size! Inlining increases the number of
+instructions in the code and therefore reduces the efficiency of the instruction cache.

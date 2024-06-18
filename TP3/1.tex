@@ -1,0 +1,19 @@
+For a regular language, we can write a regular grammar. That grammar corresponds to an NFA that
+we can transform into a DFA. We will show that the DFA can be translated to a LL(1) grammar. 
+
+Since a LL(1) grammar generates (or recognizes) a LL(1) language, we have achieved our goal.
+
+To translate a DFA into an LL(1) grammar, we do the following:
+
+The states of the DFA become non-terminal symbols and the transitions become terminal symbols in
+the grammar.
+
+Each transition in the DFA is translated to a rule in the grammar.
+
+Example: the transition A $\xrightarrow{a}$ B of the DFA with two states A and B becomes the rule A $\rightarrow$ a B.
+
+In the course, we have seen the theorem:
+A grammar is LL(1) if and only if for all rules $A \rightarrow \beta | \gamma (\text{with} \beta \ne \gamma)$
+$la(A \rightarrow \beta) \cap la(A \rightarrow \gamma) = \varnothing$
+Having $la(A \rightarrow \beta) \cap la(A \rightarrow \gamma) \ne \varnothing$ is not possible in our case because that would mean that the
+DFA had a state with two transitions with the same symbol, i.e., a non-deterministic transition.

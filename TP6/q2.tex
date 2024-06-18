@@ -1,0 +1,24 @@
+
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+int min(int a, int b) {
+    int m;
+    if(a<b)
+        m = a;
+    else
+        m = b;
+    return m;
+}
+int minAlternative(int a, int b) {
+    int m = b;
+    if(a<b)
+        m = a;
+    return m;
+}
+int squareSum(int n) {
+    int sum=0;
+    for(int i=1;i<=n;i++){
+        sum += i*i;
+    }
+    return sum;
+}
+\end{lstlisting}

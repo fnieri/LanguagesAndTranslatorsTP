@@ -1,0 +1,31 @@
+\textbf{Write a type inference rule for array expressions. The rule should be applicable to expressions like a{[i+3]}} \\
+Let's assume we have already specified the type rules for variables and arithmetic expressions like \(i+3\). Then we can write for array expressions:
+\begin{center}
+    \[
+    \frac{
+        \begin{array}{c}
+        \text{a is an identifier} \\
+        \text{a has the type of an array of int in the symbol table} \\
+        \vdash e : \text{int}
+        \end{array}
+    }{
+        \vdash a[e] : T
+    }
+    \]
+\end{center}
+\textbf{Write a type inference rule for the ternary conditional operator of Java and C, for example:
+$a<3 ? b : 5$} \\
+For the ternary conditional operator, we have:
+\begin{center}
+    \[
+    \frac{
+        \begin{array}{c}
+        \vdash b : \text{bool} \\
+        \vdash e_1 : T \\
+        \vdash e_2 : T
+        \end{array}
+    }{
+        \vdash b ? e_1 : e_2 : T
+    }
+    \]
+\end{center}

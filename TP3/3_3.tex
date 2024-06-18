@@ -1,0 +1,132 @@
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+enum Symbol {
+	Or,
+	And,
+	Not,
+	True,
+	False,
+	OpenParen,
+	ClosingParen,
+	END
+}
+ 
+class Expression {
+	Expression leftHand;
+	Symbol operation;
+	Expression rightHand;
+
+	public Expression(Expression left, Symbol op, Expression right) {
+    		leftHand = left;
+    		operation = op;
+    		rightHand = right;
+	}
+
+	public Symbol getReverseOperation() {
+    	switch (operation) {
+        	case Symbol.Or:
+            	return Symbol.And;
+        	case Symbol.And:
+            	return Symbol.Or;
+        	case Symbol.True:
+            	return Symbol.False;
+        	case Symbol.False:
+            	return Symbol.True;
+        	default:
+            	throw new ParserException(
+"Unsupported expression operation"
+);
+    		}
+	}
+
+	public boolean isFactor() {
+    		return operation == Symbol.True || operation == Symbol.False;
+	}
+
+	public void setLeftHand(Expression expr) {
+    		leftHand = expr;
+	}
+}
+
+class Lexer {
+	List<Symbol> symbols;
+	Symbol lookahead;
+	Symbol nextSymbol(); // I can't be bothered to implement that, so pretend it exists
+
+
+	public Lexer(List<Symbol> symbols) {
+    		this.symbols = symbols;
+    	this.lookahead = nextSymbol();
+	}
+
+	private Symbol match(Symbol symbol) {
+    		if (lookahead != symbol) {
+        		throw new ParserException("No match");
+    	}
+    		Symbol matchingSymbol = lookahead;
+    	lookahead = lexer.nextSymbol();
+    		return matchSymbol;
+	}
+
+
+
+	private Factor parseFactor() {
+    	switch (lookahead) {
+        	case Symbol.True:
+            	match(Symbol.True);
+            	return new Expression(null, Symbol.True, null);
+        	case Symbol.False:
+            	match(Symbol.False);
+            	return new Expression(null, Symbol.False, null);
+        	case Symbol.Not:
+            	match(Symbol.Not);
+            	Expression factorToNegate = parseFactor();
+            	Symbol reverseOp = factorToNegate.getReverseOperation();
+            	return new Expression(null, reverseOp, null);
+        	case Symbol.OpenParen:
+            	match(Symbol.OpenParen);
+            	Expression expr = parseExpression();
+            	match(Symbol.ClosingParen);
+            	return expr;
+        	default:
+            	throw new ParserException("No match");
+    	}
+	}
+
+
+	private Expression parseExpression() {
+    	Expression leftHand = parseFactor();
+    	assert leftHand.isFactor();
+    	Expression expr = parseExpressionPrime();
+    	if (expr != null) {
+        	expr.setLeftHand(leftHand);
+        	return expr;
+    	} else {
+        	return leftHand;
+    	}
+	}
+
+	private Symbol parseExpressionPrime() {
+    	switch (lookahead) {
+        	case Symbol.END:
+            	match(Symbol.END);
+            	return new Expression(null, Symbol.END, null);
+        	case Symbol.And:
+            	match(Symbol.And);
+            	Expression rightHand = parseExpression();
+            	return new Expression(null, Symbol.And, rightHand);
+        	case Symbol.Or:
+            	match(Symbol.Or);
+            	Expression rightHand = parseExpression();
+            	return new Expression(null, Symbol.Or, rightHand);
+        	default: // epsilon rule
+            	return null;
+    	}
+	}
+
+	// Lexer entry point for outside users
+	public Expression parse() {
+    		return parseExpression();
+	}
+}
+
+\end{lstlisting}

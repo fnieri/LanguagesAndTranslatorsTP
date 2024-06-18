@@ -1,0 +1,20 @@
+\noindent $(a \cdot (-a +(a)), S, \varepsilon)$ \\
+$(a \cdot (-a +(a)), S \cdot S, 3)$ Rule 3 to expand S \\
+$(a \cdot (-a +(a)), a \cdot S, 31)$ Rule 1 to expand S \\
+$(\cdot (-a +(a)), \cdot S, 31)$ Match a \\
+$( (-a +(a)), S, 31)$ Match $\cdot$ \\
+$( (-a +(a)), (S), 321)$ Rule 2 to expand S \\
+$( -a +(a)), S), 312)$ Match ( \\
+$((-a +(a)), S + S), 3124)$ Rule 4 to expand S \\
+$(-a +(a)), -S + S), 31245)$ Rule 5 to expand S \\
+$( a +(a)), S + S), 31245)$ Match -\\
+$( a +(a)), a + S), 312451)$ Rule 1 to expand S\\
+$( +(a)),  + S), 312451)$ Match a\\
+$( (a)),  S), 312451)$ Match +\\
+$( (a)),  (S)), 3124512)$ Rule 2 to expand S\\
+$( a)),  S)), 3124512)$ Match (\\
+$( a)),  a)), 31245121)$ Rule 1 to expand S\\
+$( )),  )), 31245121)$ Match a\\
+$( ),  ), 31245121)$ Match )\\
+$( \varepsilon,  \varepsilon, 31245121)$ Match )\\
+

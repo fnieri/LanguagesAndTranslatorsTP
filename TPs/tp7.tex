@@ -1,0 +1,34 @@
+\subsection{Question 1}
+    \textbf{Translate the following function to IR in SSA form and determine the liveness ranges of the variables. Draw the interference graph. Then, allocate registers for an ARM-like CPU and generate machine
+code, assuming that the parameter “c” of the function is passed in register r1 (without using the stack. That’s more efficient!) and that the return value of the function should be in register r0.}
+
+    \input{TP7/1_a}
+    \addimg{img/TP7/1_b.pdf}{}{Interference graph}{}
+
+    \input{TP7/1_c}
+
+\subsection{Question 2}
+    \textbf{In the course, we only saw code generation for functions with parameters and local variables. Now,
+let’s look at an example with global variables:}
+
+    \input{TP7/q2}
+
+    \textbf{Translate the above function “add” first to IR code and then to machine code. Assume that the global
+variables “x” and “y” start at address 0x10000 and 0x10004, respectively, in main memory.}
+    \input{TP7/2}
+
+\subsection{Question 3}
+    \textbf{Function calls are expensive because they involve a lot of operations (pushing the arguments on the stack, making backups of registers, jumping to the function, etc.). Many compilers can perform an optimization called function inlining where the code of the called function is directly inserted at the call location, thus avoiding the call. Let’s look at the following example:}
+
+    \input{TP7/q3}
+
+    \textbf{Take the role of the compiler and inline the function f at the two places where it is called. Do this inthe IR, not in the source code. Think about a strategy how to handle the variables. By the way, compilers only inline small functions. What could be the reason?}
+
+    \input{TP7/3}
+
+\subsection{Question 4}
+    \textbf{In most CPUs, integer multiplications are slower than additions or bit shifting. Think about ways to reduce the strength of multiplications, i.e., find ways to avoid the multiplication instruction for arithmetic expressions where one of the operands is a constant, for example }
+
+    \input{TP7/q4}
+
+    \input{TP7/4}
