@@ -18,3 +18,12 @@ Recompile the main file with
 ./compile.sh
 ```
 This will recompile the main.pdf file
+
+You have to install :
+```
+sudo apt install texlive-latex-base
+```
+```
+sudo apt install texlive-latex-extra
+```
+
