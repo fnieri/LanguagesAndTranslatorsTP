@@ -9,27 +9,27 @@
     child {node {E}
       child {node {E}
         child {node {F}
-            child {node {true}}      
+          child {node {true}}
         }
       }
-        child {node {and}}    
-      child {node {E}
+      child {node {and}}
+      child {node {F}
         child {node {false}}
       }
-      }
-      child {node {or}}
-      child {node {F}
-        child {node {(E)}
-          child {node {E}
-            child {node {F}
-                child {node {true}}
-            }
-          }
-          child {node {and}}
+    }
+    child {node {or}}
+    child {node {F}
+      child {node {(E)}
+        child {node {E}
           child {node {F}
-            child {node {false}}
-            }
+            child {node {true}}
+          }
         }
-       };
+        child {node {and}}
+        child {node {F}
+          child {node {false}}
+        }
+      }
+    };
 \end{tikzpicture}
 \end{document}
