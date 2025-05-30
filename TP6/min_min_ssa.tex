@@ -1,0 +1,12 @@
+\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+min(a0,b0):
+    if a0 < b0 then goto body else goto elsebody
+body:
+    m0 = a0
+    goto done(m0)
+elsebody:
+    m1 = b0
+    goto done(m1)
+done(m2):
+    return m2
+\end{lstlisting}
