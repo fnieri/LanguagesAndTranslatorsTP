@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: write # Required to commit compiled PDF
+  contents: write # Required to commit to main
 
 jobs:
   build-pdf:
@@ -22,10 +22,24 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Install LaTeX dependencies
+      - name: Cache TeX Live distribution
+        id: cache-texlive
+        uses: actions/cache@v4
+        with:
+          path: /usr/share/texlive
+          key: ${{ runner.os }}-texlive-packages-v2-${{ hashFiles('.github/workflows/compile_pdf.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-packages-v2-
+
+      - name: Install LaTeX dependencies if cache missed
+        if: steps.cache-texlive.outputs.cache-hit != 'true'
         run: |
+          echo "TeX Live cache miss. Installing dependencies..."
           sudo apt-get update
           sudo apt-get install -y texlive-latex-base texlive-latex-extra
+      - name: Echo if TeX Live cache was hit
+        if: steps.cache-texlive.outputs.cache-hit == 'true'
+        run: echo "TeX Live cache hit. Skipping full installation."
 
       - name: Make scripts executable
         run: |
@@ -65,9 +79,10 @@ jobs:
 
       - name: Commit and push PDF and generated files
         run: |
-          git add main.pdf commit_hash.tex
-          git add img/TP*/*.pdf # Add PDFs from compile_graph.sh
-          git add tikz/*.pdf    # Add PDFs from tikzexternalize in main.tex
+          git add main.pdf
+          git add -f commit_hash.tex # Force add commit_hash.tex
+          git add img/TP*/*.pdf
+          git add tikz/*.pdf
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
