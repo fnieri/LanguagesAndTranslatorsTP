@@ -1,0 +1,78 @@
+name: Compile LaTeX PDF
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write # Required to commit compiled PDF
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Install LaTeX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-extra
+
+      - name: Make scripts executable
+        run: |
+          chmod +x compile.sh
+          chmod +x compile_graph.sh
+
+      - name: Create directories for graphs and images
+        run: |
+          mkdir -p img/TP1 img/TP2 img/TP3 img/TP4 img/TP5 img/TP6 img/TP7
+          mkdir -p tikz # For TikZ pictures externalized from main.tex
+
+      - name: Compile individual graphs
+        run: |
+          ./compile_graph.sh TP1 3_1
+          ./compile_graph.sh TP1 3_2a
+          ./compile_graph.sh TP1 3_2b
+          ./compile_graph.sh TP1 3_2c
+          ./compile_graph.sh TP1 3_3a
+          ./compile_graph.sh TP1 3_3b
+          ./compile_graph.sh TP1 3_3c
+          ./compile_graph.sh TP1 3_4
+          ./compile_graph.sh TP1 3_5
+          ./compile_graph.sh TP1 3_6
+          ./compile_graph.sh TP2 1_2a
+          ./compile_graph.sh TP2 2_2a
+          ./compile_graph.sh TP2 2_2b
+          ./compile_graph.sh TP2 2_3b
+          ./compile_graph.sh TP3 3_1
+          ./compile_graph.sh TP4 2_1a
+          ./compile_graph.sh TP6 cfg_min
+          ./compile_graph.sh TP6 cfg_min_alternative
+          ./compile_graph.sh TP6 cfg_squareSum
+          ./compile_graph.sh TP7 1_b
+
+      - name: Compile main PDF document
+        run: ./compile.sh
+
+      - name: Commit and push PDF and generated files
+        run: |
+          git add main.pdf commit_hash.tex
+          git add img/TP*/*.pdf # Add PDFs from compile_graph.sh
+          git add tikz/*.pdf    # Add PDFs from tikzexternalize in main.tex
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Automated PDF and graph compilation [skip ci]"
+            git push
+          fi
