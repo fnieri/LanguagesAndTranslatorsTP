@@ -1,6 +1,6 @@
 **/commit_hash.tex
 
-# Ingonre LaTeX auxiliary files
+# Ignore LaTeX auxiliary files
 *.atfi
 *.aux
 *.auxlock
