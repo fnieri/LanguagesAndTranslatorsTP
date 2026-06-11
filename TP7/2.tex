@@ -1,21 +1,26 @@
-\begin{lstlisting}[language = Java , frame = trBL , firstnumber = last , escapeinside={(*@}{@*)}]
+IR:
+\begin{lstlisting}[language = Java , frame = trBL, escapeinside={(*@}{@*)}]
 // parameter is v0
-t0 = 0x10004
-t1 = *t0
- // read value of x
-t2 = t1 * 4
- // each array element is four bytes
-t3 = 0x10000
-t4 = t0 + t3
- // address of y[x]
-*t4 = v0
- // store v in y[x]
-//-----------
-t5 = 0x10004
-t6 = *t5
-t7 = t6 + 1
-*t5 = t7
- // store x+1 in x
+t0 = 0x10000 // Address of x
+t1 = 0x10004 // Address of y
+t2 = *t0 // Value of x
+t3 = t2 * 4 // Each element of the array (int32) is 4 bytes 
+t4 = t0 + t3 // Address of y[x]
+*t4 = v0 // y[x] = v0
+t5 = t2 + 1 // x + 1
+*t0 = t5 // x = x + 1
 \end{lstlisting}
 
-Of course, this code can be optimized. Instead of loading again the variable x in t6, we could just re-use t1.
+ARM-like machine code:
+\begin{lstlisting}[language = Java , frame = trBL, escapeinside={(*@}{@*)}]
+// v0 is in r1
+load r0, 0x10000 // Load address of x 
+load r2, 0x10004 // Load address of y
+load r3, [r0] // Load value of x
+shl r4, r3, 2 // Multiply x by 4 (shift left by 2)
+add r4, r2, r4 // Calculate address of y[x]
+store r4, [r1] // Store value of v0 into y[x]
+add r3, r3, 1 // Calculate x + 1
+store r0, [r3] // Store updated value of x back to memory
+ret
+\end{lstlisting}

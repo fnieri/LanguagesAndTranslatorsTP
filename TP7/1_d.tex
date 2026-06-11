@@ -1,0 +1,12 @@
+ARM-like machine code:
+\begin{lstlisting}[language = Java , frame = trBL, escapeinside={(*@}{@*)}]
+shl r0, r1, 1
+add r2, r0, 1
+add r1, r1, r2
+shl r2, r2, 1 
+add r0, r2, r0
+add r0, r1, r0
+return r0
+\end{lstlisting}
+
+Note: \texttt{shl x, y, 1} (left shift) is equivalent to \texttt{mul x, y, 2} but is more efficient.
